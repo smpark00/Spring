@@ -1,0 +1,7 @@
+테스트케이스 할때 
+@Test 에서
+Assertions.assertThat(member).isEqualTo(result); // 같은지 비교
+할때
+Alt+Enter를 누르면 앞에 Assertions를 static으로 변경해주는데 이렇게 하면
+나중에 더 쉽게 사용할 수 있다.
+
