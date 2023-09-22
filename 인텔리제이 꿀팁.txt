@@ -5,3 +5,13 @@ Assertions.assertThat(member).isEqualTo(result); // 같은지 비교
 Alt+Enter를 누르면 앞에 Assertions를 static으로 변경해주는데 이렇게 하면
 나중에 더 쉽게 사용할 수 있다.
 
+
+
+------------------------------
+
+Member member1 = new Member();
+        member1.setName("spring");
+        repository.save(member1);
+
+member1의 이름을 바꾸고 싶을때
+shift+F6을 누르고 바꾸면 한번에 다 바뀐다
