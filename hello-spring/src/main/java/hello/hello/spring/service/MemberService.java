@@ -24,7 +24,9 @@ public class MemberService {
      */
     public Long join(Member member){
         //같은 이름이 있는 중복 회원 X
-        validateDuplicateMember(member);
+
+        long start = System.currentTimeMillis();
+
         /*
         findByName이 Optional로 정의를 내가 해놨으므로, 이렇게 쓸수 있지만 줄이는게 좋다.
         Optional<Member> result = memberRepository.findByName(member.getName());
@@ -32,9 +34,16 @@ public class MemberService {
             throw new IllegalStateException("이미 존재하는 회원입니다");
         });
          */
+        try{
+            validateDuplicateMember(member); //중복 회원 검증
+            memberRepository.save(member);
+            return member.getId();
+        }finally {
+            long finish = System.currentTimeMillis();
+            long timeMs = finish - start;
+            System.out.println("join = " + timeMs + "ms");
+        }
 
-        memberRepository.save(member);
-        return member.getId();
     }
 
     private void validateDuplicateMember(Member member) {
@@ -48,7 +57,15 @@ public class MemberService {
      * 전체 회원 조회
      */
     public List<Member> findMembers(){
-        return memberRepository.findAll();
+        long start = System.currentTimeMillis();
+        try{
+            return memberRepository.findAll();
+        }finally {
+            long finish = System.currentTimeMillis();
+            long timeMs = finish - start;
+            System.out.println("findMembers" + timeMs + "ms");
+        }
+
     }
 
     public Optional<Member> findOne(Long memberId){
